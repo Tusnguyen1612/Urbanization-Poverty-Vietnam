@@ -120,37 +120,6 @@ Observations: 2,034. Standard errors clustered by province. Stars follow the pap
 
 P0 only records whether a household is above or below the line, so small income changes are invisible. P2 puts most weight on the poorest households, whose poverty is structural and slow to move. P1 averages the shortfall from the line, so it is the measure most responsive to the marginal income changes urbanization tends to produce.
 
-## Reproducing the results
-
-The two analysis-ready panels are the inputs:
-
-- `data/merged_panel_hh_121416.dta`: household panel (28,223 household-wave rows before balancing; 19,776 households)
-- `data/merged_panel_district_121416.dta`: district panel (2,115 district-wave rows)
-
-> ⚠️ The VHLSS-derived `.dta` files are **not tracked in this repository** (see `.gitignore`); place them in `data/` yourself. Check the GSO's data-use terms before redistributing them.
-
-**Python (tested)**
-
-```bash
-pip install -r requirements.txt
-python code/replicate_models.py                    # ethnicity control as in the paper's Table 4
-python code/replicate_models.py --ethnicity kinh   # Kinh-dummy robustness check
-```
-
-This rebuilds the balanced samples (1,895 households / 5,685 obs.; 5,592 in the regressions; 2,034 district obs.), re-estimates all models, and writes CSVs to `results/`. Sample sizes, Table 2 summary statistics, household-level coefficients, p-values, R², and turning points match the paper. District-level coefficients match exactly.
-
-**Stata (reconstructed, not run)**
-
-[`code/reconstructed_analysis.do`](code/reconstructed_analysis.do) expresses the same specification with `reghdfe`. The original do-file was not archived, so this version was rebuilt from the paper's specification and has not been run in Stata; treat the Python script as the verified path. Requires `reghdfe` and `ftools`.
-
-## Replication notes
-
-Details found while reproducing the paper's tables:
-
-1. **Ethnicity control (household models).** Table 4 labels the row "Ethnicity (Kinh = 1)", but its coefficients (e.g., 0.0077, 0.0044, 0.0001) reproduce exactly only when the raw ethnic-group code `dantoc` (values 1–56) is entered as a continuous regressor. With the Kinh dummy (`--ethnicity kinh`), the Kinh coefficient is negative and significant in Model A (P1: −0.035, p = 0.007), which is consistent with the paper's narrative that minority households are poorer. The P1 nightlight terms remain significant in Model A (p = 0.029 / 0.014) but become borderline in Model B (p = 0.055 / 0.056).
-2. **Turning point.** The paper's summary text quotes a range of ≈ 52–62.5 nW/cm²/sr; the P1 predictive-margin figures and the replication give 53.1 (Model A) and 58.6 (Model B).
-3. **District standard errors.** Coefficients and N replicate exactly; the Python cluster-robust SEs are about 18% smaller than the paper's Stata `reghdfe` SEs (cluster and singleton handling differ). All district-level nightlight terms remain insignificant either way.
-
 ## Limitations
 
 - **Endogeneity.** Fixed effects remove time-invariant confounders, but reverse causality (poverty affecting nightlight) and time-varying omitted variables are not ruled out. Transitory shocks moving nightlight and poverty in opposite directions would bias estimates toward zero, so the district-level null may reflect attenuation.
@@ -160,20 +129,6 @@ Details found while reproducing the paper's tables:
 - **Self-reported data.** VHLSS expenditure is survey-based and may carry reporting bias.
 
 Suggested extensions: longer panels, instrumental variables for nightlight, and migration-status data to test the Harris–Todaro mechanism directly.
-
-## Repository structure
-
-```
-├── README.md
-├── requirements.txt
-├── paper/          # final paper (PDF)
-├── code/
-│   ├── replicate_models.py          # tested Python replication
-│   └── reconstructed_analysis.do    # reconstructed Stata version (not run)
-├── data/           # place the two .dta panels here (not tracked)
-├── results/        # CSV estimates written by the replication script
-└── figures/        # nightlight maps and P1 marginal-effect plot
-```
 
 ## References
 
