@@ -5,7 +5,7 @@ This project uses VIIRS satellite nighttime lights as an objective measure of ur
 
 *Development Economics final project · International University, Vietnam National University – Ho Chi Minh City · May 2026 · Instructor: Dr. Nguyen Phuoc Thien Anh*
 
-**Authors** (alphabetical): Duong Hanh Trang, Duong Thi Nhu Y, Hoang Quang Huy, Nguyen Dinh Tu
+**Authors** (alphabetical): Nguyen Dinh Tu, Duong Hanh Trang, Duong Thi Nhu Y, Hoang Quang Huy
 
 📄 Full paper: [`paper/Urbanization_Poverty_Vietnam_paper.pdf`](Urbanization_Poverty_Vietnam_paper.pdf)
 
