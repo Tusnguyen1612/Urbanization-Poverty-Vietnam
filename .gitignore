@@ -1,0 +1,5 @@
+# VHLSS-derived microdata: check General Statistics Office (GSO) terms before publishing
+data/*.dta
+.DS_Store
+__pycache__/
+*.pyc
