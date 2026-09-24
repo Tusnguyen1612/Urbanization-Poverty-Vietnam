@@ -7,7 +7,7 @@ This project uses VIIRS satellite nighttime lights as an objective measure of ur
 
 **Authors** (alphabetical): Duong Hanh Trang, Duong Thi Nhu Y, Hoang Quang Huy, Nguyen Dinh Tu
 
-📄 Full paper: [`paper/Urbanization_Poverty_Vietnam_paper.pdf`](paper/Urbanization_Poverty_Vietnam_paper.pdf)
+📄 Full paper: [`paper/Urbanization_Poverty_Vietnam_paper.pdf`](Urbanization_Poverty_Vietnam_paper.pdf)
 
 ![Nighttime light intensity in Vietnam, 2012, 2014, 2016](figures/fig_nightlight_vietnam_2012_2016.png)
 *VIIRS Annual V2.1 nighttime lights over Vietnam (2012, 2014, 2016), the urbanization proxy used in the analysis.*
